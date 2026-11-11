@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>NOORLUME form definitions</title>
+  </head>
+  <body>
+    <!--
+      Netlify Forms registration file. Netlify reads this at deploy time to
+      register the "enquiry" form. The visible form is rendered by
+      components/EnquiryForm.tsx and posts here. Field names must match.
+    -->
+    <form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="enquiry" />
+      <input type="text" name="fullName" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="text" name="phone" />
+      <input type="text" name="country" />
+      <input type="text" name="projectLocation" />
+      <input type="text" name="serviceCategory" />
+      <input type="text" name="projectCapacity" />
+      <input type="text" name="buildingType" />
+      <textarea name="description"></textarea>
+      <input type="text" name="timeline" />
+      <input type="text" name="consent" />
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>

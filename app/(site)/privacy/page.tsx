@@ -50,10 +50,10 @@ export default function PrivacyPage() {
       <h2>Service providers</h2>
       <p>We rely on the following processors to run this website:</p>
       <ul>
-        <li>Supabase: secure storage of enquiry records.</li>
+        <li>Netlify: website hosting and storage of enquiry form submissions.</li>
+        <li>Supabase: secure storage of enquiry records, where enabled.</li>
         <li>Anthropic: AI processing of chatbot messages.</li>
         <li>Resend: delivery of enquiry notification emails to our team.</li>
-        <li>Vercel: website hosting.</li>
       </ul>
       <p>These providers may process data outside your country of residence.</p>
 

@@ -9,6 +9,40 @@ type State = 'idle' | 'sending' | 'sent' | 'error';
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+/**
+ * Fallback store: Netlify Forms. Used only when the Supabase/Resend backend is
+ * not configured. Posts to the static registration file public/__forms.html.
+ * Returns true only when Netlify accepted the submission.
+ */
+async function submitToNetlifyForms(p: Record<string, unknown>) {
+  try {
+    const body = new URLSearchParams({
+      'form-name': 'enquiry',
+      fullName: String(p.fullName ?? ''),
+      email: String(p.email ?? ''),
+      company: String(p.company ?? ''),
+      phone: String(p.phone ?? ''),
+      country: String(p.country ?? ''),
+      projectLocation: String(p.projectLocation ?? ''),
+      serviceCategory: String(p.serviceCategory ?? ''),
+      projectCapacity: String(p.projectCapacity ?? ''),
+      buildingType: String(p.buildingType ?? ''),
+      description: String(p.description ?? ''),
+      timeline: String(p.timeline ?? ''),
+      consent: p.consent ? 'Yes' : 'No',
+      'bot-field': String(p.website ?? ''),
+    });
+    const res = await fetch('/__forms.html', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body.toString(),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 export function EnquiryForm({ initialService = '' }: { initialService?: string }) {
   const [state, setState] = useState<State>('idle');
   const [errors, setErrors] = useState<Errors>({});
@@ -68,6 +102,9 @@ export function EnquiryForm({ initialService = '' }: { initialService?: string }
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
+        setState('sent');
+      } else if (res.status === 503 && (await submitToNetlifyForms(payload))) {
+        // Database/email backend not configured: the enquiry was stored by Netlify Forms instead.
         setState('sent');
       } else {
         setErrors(data.errors ?? {});
