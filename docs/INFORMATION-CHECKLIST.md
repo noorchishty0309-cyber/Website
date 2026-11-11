@@ -40,6 +40,8 @@ The site makes a small number of statements about how NOORLUME works. Please con
 - Deliverables are issued against an agreed deliverables list with tracked revisions and comment resolution sheets (home, about)
 - Each assignment starts with a written design basis (about)
 - Clients speak directly with the engineers doing the work (home)
+- Each service can be engaged on its own, from a single calculation to a full package (home page FAQ)
+- NOORLUME is independent of equipment suppliers and contractors (home page)
 - PVsyst is used for energy yield assessment (service page, knowledge base)
 - Regions served: India, the Middle East, GCC countries and international markets
 

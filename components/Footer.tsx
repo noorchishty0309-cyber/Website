@@ -36,6 +36,7 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+            <li><Link className="hover:text-lime" href="/industries">Industries</Link></li>
             <li><Link className="hover:text-lime" href="/contact">Contact</Link></li>
           </ul>
         </div>

@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page('/', 1),
     page('/renewable-energy', 0.9),
     page('/mep', 0.9),
+    page('/project-lifecycle', 0.8),
     page('/about', 0.7),
     page('/industries', 0.7),
     page('/projects', 0.6),

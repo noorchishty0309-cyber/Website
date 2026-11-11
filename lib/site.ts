@@ -22,12 +22,12 @@ export const site = {
 };
 
 export const nav = [
-  { href: '/about', label: 'About' },
   { href: '/renewable-energy', label: 'Renewable Energy' },
   { href: '/mep', label: 'MEP Engineering' },
-  { href: '/industries', label: 'Industries' },
+  { href: '/project-lifecycle', label: 'Project Lifecycle' },
   { href: '/projects', label: 'Projects' },
   { href: '/insights', label: 'Insights' },
+  { href: '/about', label: 'About' },
 ];
 
 export function whatsappLink(message = 'Hello NOORLUME, I would like to discuss a project.') {
