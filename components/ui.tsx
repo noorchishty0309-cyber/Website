@@ -1,6 +1,23 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { Photo } from './Photo';
 import { Reveal } from './Reveal';
+
+/**
+ * Photographs from Unsplash, free to use under the Unsplash License
+ * (https://unsplash.com/license). Credits are listed in docs/IMAGE-CREDITS.md.
+ * They show third-party solar plants for illustration and are not NOORLUME
+ * projects. Replace an entry with your own image path (for example
+ * '/photos/my-plant.jpg' in the public folder) at any time.
+ */
+const U = 'https://images.unsplash.com/';
+const q = (w: number) => `?auto=format&fit=crop&w=${w}&q=70`;
+export const photos: Record<string, { src: (w: number) => string; alt: string }> = {
+  hero: { src: (w) => `${U}photo-1641959166364-6c9b9898e804${q(w)}`, alt: 'Aerial view of a utility-scale solar PV plant in a desert landscape' },
+  field: { src: (w) => `${U}photo-1677273459827-e212995b079d${q(w)}`, alt: 'Aerial view of rows of ground-mounted solar PV modules' },
+  plant: { src: (w) => `${U}photo-1756232973381-5ed87773a908${q(w)}`, alt: 'Aerial view of a large ground-mounted solar PV plant' },
+  rooftop: { src: (w) => `${U}photo-1745321633881-d2d2218911bd${q(w)}`, alt: 'Solar PV modules covering the roof of a large industrial building' },
+};
 
 export function Arrow() {
   return (
@@ -33,9 +50,35 @@ const artAlt: Record<ArtName, string> = {
  * scripts/build_brand.py. To use photography instead, replace the <img>
  * source with your licensed photo (see docs/INFORMATION-CHECKLIST.md).
  */
-export function Art({ name, tone = 'dark', className = '' }: { name: string; tone?: 'dark' | 'light'; className?: string }) {
+export function Art({
+  name,
+  tone = 'dark',
+  className = '',
+  photo,
+  eager = false,
+}: {
+  name: string;
+  tone?: 'dark' | 'light';
+  className?: string;
+  /** Key in `photos` to show a photograph, with this drawing as the fallback. */
+  photo?: string;
+  eager?: boolean;
+}) {
   const n = (name in artAlt ? name : 'sld') as ArtName;
   const wide = n === 'field';
+  if (photo && photos[photo]) {
+    return (
+      <Photo
+        src={photos[photo].src(wide || photo === 'hero' ? 1800 : 1000)}
+        fallback={`/illustrations/${n}-${tone}.svg`}
+        alt={photos[photo].alt}
+        width={wide ? 1600 : 800}
+        height={wide ? 900 : 520}
+        className={className}
+        eager={eager}
+      />
+    );
+  }
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
@@ -114,7 +157,7 @@ export function PageHero({
         </div>
         {art ? (
           <div className="rise hidden aspect-[800/520] overflow-hidden border border-white/10 lg:block" style={{ ['--d' as string]: '240ms' }}>
-            <Art name={art} />
+            <Art name={art} photo={art === 'field' ? 'plant' : art === 'rooftop' ? 'rooftop' : undefined} eager />
           </div>
         ) : null}
       </div>

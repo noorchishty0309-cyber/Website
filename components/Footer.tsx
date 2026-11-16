@@ -67,7 +67,7 @@ export function Footer() {
 
       <div className="border-t border-white/10">
         <div className="wrap flex flex-col gap-3 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} NOORLUME Energy &amp; Engineering. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} NOORLUME Energy &amp; Engineering. All rights reserved. Site photography: Unsplash contributors, shown for illustration.</p>
           <p className="flex gap-6">
             <Link className="hover:text-lime" href="/privacy">Privacy policy</Link>
             <Link className="hover:text-lime" href="/terms">Terms and conditions</Link>

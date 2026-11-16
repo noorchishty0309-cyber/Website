@@ -26,7 +26,7 @@ export default function IndustriesPage() {
             <Reveal key={ind.name} delay={(i % 3) * 70}>
               <article className="card group flex h-full flex-col overflow-hidden transition hover:border-emerald">
                 <div className="aspect-[800/420] overflow-hidden bg-navy">
-                  <Art name={ind.art} className="transition duration-500 group-hover:scale-[1.04]" />
+                  <Art name={ind.art} photo={ind.art === 'field' ? 'plant' : ind.art === 'rooftop' ? 'rooftop' : undefined} className="transition duration-500 group-hover:scale-[1.04]" />
                 </div>
                 <div className="p-7">
                   <span className="font-mono text-xs text-emerald">{String(i + 1).padStart(2, '0')}</span>

@@ -30,8 +30,8 @@ const pillars = [
 ];
 
 const disciplines = [
-  { title: 'Ground-mounted solar PV', text: 'Utility-scale layout, string design and DC to MV electrical systems.', art: 'field', href: '/renewable-energy/ground-mounted-solar-pv-design' },
-  { title: 'Rooftop solar PV', text: 'Commercial and industrial rooftops integrated with existing electrical systems.', art: 'rooftop', href: '/renewable-energy/rooftop-solar-pv-engineering' },
+  { title: 'Ground-mounted solar PV', text: 'Utility-scale layout, string design and DC to MV electrical systems.', art: 'field', photo: 'field', href: '/renewable-energy/ground-mounted-solar-pv-design' },
+  { title: 'Rooftop solar PV', text: 'Commercial and industrial rooftops integrated with existing electrical systems.', art: 'rooftop', photo: 'rooftop', href: '/renewable-energy/rooftop-solar-pv-engineering' },
   { title: 'Solar carports', text: 'Canopy arrays with concealed cabling and EV-ready provisions.', art: 'carport', href: '/renewable-energy/carport-solar-pv-engineering' },
   { title: 'Electrical and grid', text: 'Single-line diagrams, cable sizing, earthing, protection and grid integration.', art: 'sld', href: '/renewable-energy#electrical-design' },
   { title: 'HVAC and mechanical', text: 'Load calculations, ventilation and equipment selection for buildings.', art: 'hvac', href: '/mep#mechanical' },
@@ -80,7 +80,7 @@ export default function HomePage() {
       {/* Hero with lifecycle selector */}
       <section className="on-dark relative isolate overflow-hidden bg-navy text-white">
         <div className="absolute inset-0 -z-10">
-          <Art name="field" className="opacity-70" />
+          <Art name="field" photo="hero" eager className="opacity-60" />
           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/55" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy to-transparent" />
         </div>
@@ -198,7 +198,7 @@ export default function HomePage() {
               <Reveal key={d.title} delay={(i % 3) * 70}>
                 <Link href={d.href} className="card-link group flex h-full flex-col overflow-hidden">
                   <div className="aspect-[800/440] overflow-hidden bg-navy">
-                    <Art name={d.art} className="transition duration-500 group-hover:scale-[1.04]" />
+                    <Art name={d.art} photo={'photo' in d ? d.photo : undefined} className="transition duration-500 group-hover:scale-[1.04]" />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <h3 className="text-xl font-semibold">{d.title}</h3>
